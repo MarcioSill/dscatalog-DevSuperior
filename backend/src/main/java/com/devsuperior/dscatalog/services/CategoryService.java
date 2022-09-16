@@ -15,7 +15,9 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repository;
 	
-	@Transactional(readOnly = true)
+	//onde for leitura coloque (readOnly = true)para não travar o banco deixando o lento
+	
+	@Transactional(readOnly = true) //faz uma transação segura e melhoa a performs:(readOnly = true) 
 	public List<Category> findAll(){
 		return repository.findAll();
 	}
