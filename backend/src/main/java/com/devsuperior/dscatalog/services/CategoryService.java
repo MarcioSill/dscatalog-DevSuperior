@@ -19,6 +19,7 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repository;
 	
+	//busca todos
 	//onde for leitura coloque (readOnly = true)para não travar o banco deixando o lento
 	
 	@Transactional(readOnly = true) //faz uma transação segura e melhoa a performs:(readOnly = true) 
@@ -28,11 +29,21 @@ public class CategoryService {
 		return list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
 	
 	}
-
+	
+	//busca por id
 	@Transactional(readOnly = true)
 	public CategoryDTO findById(Long id) {
 		Optional<Category> obj = repository.findById(id);
 		Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not foud"));
+		return new CategoryDTO(entity);
+	}
+
+	//insert
+	@Transactional(readOnly = true)
+	public CategoryDTO insert(CategoryDTO dto) {
+		Category entity = new Category();
+		entity.setName(dto.getName());
+		entity = repository.save(entity);
 		return new CategoryDTO(entity);
 	}
 }
