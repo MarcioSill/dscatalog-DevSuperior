@@ -14,8 +14,10 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 //cria entidades no banco de dados
+//cria tabela category
+
 @Entity
-@Table(name = "tb_category") //cria tabela category
+@Table(name = "tb_category") 
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
